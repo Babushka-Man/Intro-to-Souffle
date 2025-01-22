@@ -1,0 +1,20 @@
+
+/* Declaring two relations: parent and ancestor. */
+.decl parent(parent: symbol, child: symbol)
+.decl ancestor(ancestor: symbol, descendant: symbol)
+
+/* The input directive populates a relation with tuples from input files. */
+.input parent
+
+/**
+ *
+ * This statements are called rules. These define how to compute new facts and add them to relations in our program.
+ * On the left side of the rule is the head of the rule, which specifies a new tuple to be added to the relation.
+ * On the right side of the rule is it's body, which specifies the conditions that must be satisfied in order to add the new tuple.
+ *
+ * For more information about rules, see: https://souffle-lang.github.io/rules
+ */
+ancestor(X, Y) :- parent(X, Y).
+ancestor(X, Z) :- parent(X, Y), ancestor(Y, Z).
+
+.output ancestor

@@ -1,0 +1,16 @@
+
+/**
+ * The ".decl" directive declares a new relation, which is essentially a table.
+ * Here we declare a relation named "hello" with a single column named "greeting" of type symbol, which is a string.
+ */
+.decl hello(greeting: symbol)
+
+/**
+ * This statement is called a fact, it adds a new tuple(row) to the relation "hello".
+ */
+hello("Hello World!").
+
+/**
+ * The ".output" directive specifies a relation to be either printed to the console or saved as a file, depends on command line options.
+ */
+.output hello

@@ -1,0 +1,50 @@
+
+/* ===== Part 1: Points ===== */
+
+.type Point = [x: float, y: float]
+
+.decl point(id: symbol, p: Point)
+.input point
+
+/* Relation for reference */
+.decl first_quadrant(id: symbol)
+first_quadrant(id) :-
+    point(id, [x, y]),
+    x > 0,
+    y > 0.
+
+
+.decl distance(id1: symbol, id2: symbol, d: float)
+/* Task - Add a rule for the distance relation */
+
+.output distance
+
+
+/* ===== Part 2: Lines ===== */
+
+/* Task - Complete the definition of the Line type */
+.type Line = /* ... */
+
+.decl line(id: symbol, l: Line)
+.input line
+
+
+.decl midpoint(id: symbol, p: Point)
+
+/* Task - Add rules for the midpoint relation */
+
+.output midpoint
+
+
+.decl parallel_to_axis(id: symbol)
+
+/* Task - Add rules for the parallel_to_axis relation */
+
+.output parallel_to_axis
+
+
+.decl slope(id: symbol, s: float)
+
+/* Task - Add rules for the slope relation */
+
+.output slope

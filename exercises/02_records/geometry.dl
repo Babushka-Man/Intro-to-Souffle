@@ -14,8 +14,12 @@ first_quadrant(id) :-
     y > 0.
 
 
+.functor sqrt_double(x: float): float
+.functor pow_float(x: float, y: float): float
+
 .decl distance(id1: symbol, id2: symbol, d: float)
 /* Task - Add a rule for the distance relation */
+distance(id1, id2, sqrt_double(pow_float(x1 - x2, 2) + pow_float(y1 - y2, 2))) :- point(id1, [x1, y1]), point(id2, [x2, y2])
 
 .output distance
 

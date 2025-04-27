@@ -13,21 +13,21 @@ first_quadrant(id) :-
     x > 0,
     y > 0.
 
-
-.functor sqrt_double(x: float): float
-.functor pow_float(x: float, y: float): float
-
 .decl distance(id1: symbol, id2: symbol, d: float)
 /* Task - Add a rule for the distance relation */
-distance(id1, id2, sqrt_double(pow_float(x1 - x2, 2) + pow_float(y1 - y2, 2))) :- point(id1, [x1, y1]), point(id2, [x2, y2])
+distance(id1, id2, d) :-
+    point(id1, [x1, y1]),
+    point(id2, [x2, y2]),
+    id1 < id2,
+    d = ((x1 - x2) ^ 2 + (y1 - y2) ^ 2) ^ 0.5.
 
-.output distance
+.output distance(filename="./output/distance.csv")
 
 
 /* ===== Part 2: Lines ===== */
 
 /* Task - Complete the definition of the Line type */
-.type Line = /* ... */
+.type Line = [p1: Point, p2: Point]
 
 .decl line(id: symbol, l: Line)
 .input line
@@ -36,19 +36,23 @@ distance(id1, id2, sqrt_double(pow_float(x1 - x2, 2) + pow_float(y1 - y2, 2))) :
 .decl midpoint(id: symbol, p: Point)
 
 /* Task - Add rules for the midpoint relation */
+midpoint(x, p) :- line(x, [[x1, y1], [x2, y2]]), p = [x1 + (x2 - x1) / 2, y1 + (y2 - y1) / 2].
 
-.output midpoint
+.output midpoint(filename="./output/midpoint.csv")
 
 
 .decl parallel_to_axis(id: symbol)
 
 /* Task - Add rules for the parallel_to_axis relation */
+parallel_to_axis(x) :- line(x, [[x1, _], [x2, _]]), x1 = x2.
+parallel_to_axis(x) :- line(x, [[_, y1], [_, y2]]), y1 = y2.
 
-.output parallel_to_axis
+.output parallel_to_axis(filename="./output/parallel_to_axis.csv")
 
 
 .decl slope(id: symbol, s: float)
 
 /* Task - Add rules for the slope relation */
+slope(x, s) :- line(x, [[x1, y1], [x2, y2]]), x1 != x2, s = (y2 - y1) / (x2 - x1).
 
-.output slope
+.output slope(filename="./output/slope.csv")
